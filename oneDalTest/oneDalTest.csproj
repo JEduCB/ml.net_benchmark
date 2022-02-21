@@ -19,6 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Data\msrank_test.csv" />
+    <None Remove="Data\msrank_train.csv" />
     <None Remove="Data\year_prediction_msd_test.csv" />
     <None Remove="Data\year_prediction_msd_train.csv" />
   </ItemGroup>
@@ -34,6 +36,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\mnist_train.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\msrank_test.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\msrank_train.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\year_prediction_msd_test.csv">
