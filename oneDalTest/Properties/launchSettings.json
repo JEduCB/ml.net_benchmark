@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "oneDalTest": {
+      "commandName": "Project",
+      "commandLineArgs": "task=bin dataset=a9a target=target1 onedal=0 iterations=3",
+      "nativeDebugging": true
+    }
+  }
+}
