@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <StartupObject>oneDalTest.Program</StartupObject>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="*.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="*.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Data\msrank_test.csv" />
+    <None Remove="Data\msrank_train.csv" />
+    <None Remove="Data\year_prediction_msd_test.csv" />
+    <None Remove="Data\year_prediction_msd_train.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\a9a_test.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\a9a_train.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\mnist_test.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\mnist_train.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\msrank_test.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\msrank_train.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\year_prediction_msd_test.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\year_prediction_msd_train.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <NativeAssemblyReference Include="OneDALNative" />
+    <NativeAssemblyReference Include="MklImports" />
+    <NativeAssemblyReference Condition="'$(OS)' == 'Windows_NT'" Include="libiomp5md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML.Mkl.Components" Version="2.0.0-dev.22117.1" />
+    <PackageReference Include="Microsoft.ML.OneDal" Version="0.20.0-dev.22117.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
