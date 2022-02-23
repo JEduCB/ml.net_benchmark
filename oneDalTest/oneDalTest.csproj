@@ -59,8 +59,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.ML.Mkl.Components" Version="2.0.0-dev.22117.1" />
-    <PackageReference Include="Microsoft.ML.OneDal" Version="0.20.0-dev.22117.1" />
+    <PackageReference Include="Microsoft.ML.Mkl.Components" Version="2.0.0-dev.22122.1" />
+    <PackageReference Include="Microsoft.ML.OneDal" Version="0.20.0-dev.22122.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
