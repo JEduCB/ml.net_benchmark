@@ -14,25 +14,19 @@ namespace oneDalTest.Tasks
     {
         static internal void RunTask(string dataset, string task, string targetColumn, bool onedalEnabled, int iterations)
         {
-            Console.WriteLine();
-
-            //Temporary read just for getting the number of features - Start
-            var tmpContext = new MLContext(seed: 0);
-            var tmpData = DataLoader.LoadData(tmpContext, dataset, task, targetColumn);
-            var tmpFeaturesArray = DataLoader.GetFeaturesArray(tmpData[0]);
-            //Temporary read just for getting the number of features - End
+            string header = "Run,Dataset,Task,All time[ms],Reading time[ms],Fitting time[ms],Prediction time[ms],Evaluation time[ms]," +
+                        "LogLoss,Accuracy,ROC-AUC";
 
             Console.WriteLine();
             Console.WriteLine("Running Binary Classification Test");
             Console.WriteLine("Using oneDAL = " + onedalEnabled.ToString());
-            Console.WriteLine($"Found [{tmpFeaturesArray.Length}] features.");
-            Console.WriteLine($"Arranging data for task: {task} (configuring preprocessing).");
+            Console.WriteLine($"Arranging data for task: {task} (configuring preprocessing)");
 
             Console.WriteLine();
-            Console.WriteLine("Dataset,Task,All time[ms],Reading time[ms],Fitting time[ms],Prediction time[ms],Evaluation time[ms]," +
-                "LogLoss,Accuracy,ROC-AUC");
+            Console.WriteLine("Warming up... Please wait!");
+            Console.WriteLine();
 
-            for (int i = 0; i < iterations; ++i)
+            for (int i = 0; i <= iterations; ++i)
             {
                 var tg = System.Diagnostics.Stopwatch.StartNew();
                 var t0 = System.Diagnostics.Stopwatch.StartNew();
@@ -78,9 +72,31 @@ namespace oneDalTest.Tasks
                 t3.Stop();
                 tg.Stop();
 
-                Console.Write($"{dataset},{task},{tg.Elapsed.TotalMilliseconds},{t0.Elapsed.TotalMilliseconds}," +
-                    $"{t1.Elapsed.TotalMilliseconds},{t2.Elapsed.TotalMilliseconds},{t3.Elapsed.TotalMilliseconds}," +
-                    $"{metrics.LogLoss},{metrics.Accuracy},{metrics.AreaUnderRocCurve}\n");
+                if (i == 0)
+                {
+                    Console.WriteLine($"Found [{featuresArray.Length}] features.");
+
+                    Console.WriteLine();
+                    Console.WriteLine($"First run result - Run {i} (warming up).");
+
+                    Console.WriteLine();
+                    Console.WriteLine(header);
+                    Console.WriteLine($"{i},{dataset},{task},{tg.Elapsed.TotalMilliseconds},{t0.Elapsed.TotalMilliseconds}," +
+                        $"{t1.Elapsed.TotalMilliseconds},{t2.Elapsed.TotalMilliseconds},{t3.Elapsed.TotalMilliseconds}," +
+                        $"{metrics.LogLoss},{metrics.Accuracy},{metrics.AreaUnderRocCurve}");
+
+                    Console.WriteLine();
+                    Console.WriteLine($"{iterations} iterations will be now executed.");
+
+                    Console.WriteLine();
+                    Console.WriteLine(header);
+                }
+                else
+                {
+                    Console.Write($"{i},{dataset},{task},{tg.Elapsed.TotalMilliseconds},{t0.Elapsed.TotalMilliseconds}," +
+                        $"{t1.Elapsed.TotalMilliseconds},{t2.Elapsed.TotalMilliseconds},{t3.Elapsed.TotalMilliseconds}," +
+                        $"{metrics.LogLoss},{metrics.Accuracy},{metrics.AreaUnderRocCurve}\n");
+                }
             }
         }
     }
