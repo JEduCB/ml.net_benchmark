@@ -13,8 +13,8 @@ namespace oneDalTest.Helpers
     {
         public static IDataView[] LoadData(MLContext mlContext, string dataset, string task, string label = "target", char separator = ',')
         {
-            var trainDataset = $"Data\\{dataset}_train.csv";
-            var testDataset = $"Data\\{dataset}_test.csv";
+            var trainDataset = $"Data/{dataset}_train.csv";
+            var testDataset = $"Data/{dataset}_test.csv";
 
             if (!File.Exists(trainDataset) || !File.Exists(testDataset))
             {
