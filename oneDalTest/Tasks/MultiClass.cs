@@ -19,6 +19,7 @@ namespace oneDalTest.Tasks
 
             Console.WriteLine();
             Console.WriteLine("Running Multi-Class Classification Test");
+            Console.WriteLine("Logical CPUs Count = " + Environment.ProcessorCount);
             Console.WriteLine("Using oneDAL = " + onedalEnabled.ToString());
             Console.WriteLine($"Arranging data for task: {task} (configuring preprocessing)");
 
@@ -54,11 +55,12 @@ namespace oneDalTest.Tasks
                 {
                     LabelColumnName = targetColumn,
                     FeatureColumnName = "Features",
-                    L1Regularization = 0.05f,
-                    L2Regularization = 0.05f,
-                    HistorySize = 20,
-                    OptimizationTolerance = 1e-6f,
-                    MaximumNumberOfIterations = 100
+                    L1Regularization = 0.0f,
+                    L2Regularization = 0.0f,
+                    HistorySize = 1,
+                    OptimizationTolerance = 1e-8f,
+                    MaximumNumberOfIterations = 100,
+                    NumberOfThreads = Environment.ProcessorCount
                 };
 
                 var trainer = mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(options);
