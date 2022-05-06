@@ -58,7 +58,7 @@ namespace oneDalTest.Tasks
                     L1Regularization = 0.0f,
                     L2Regularization = 0.0f,
                     HistorySize = 1,
-                    OptimizationTolerance = 1e-8f,
+                    OptimizationTolerance = 1e-12f,
                     MaximumNumberOfIterations = 100,
                     NumberOfThreads = Environment.ProcessorCount
                 };

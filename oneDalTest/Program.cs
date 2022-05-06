@@ -36,6 +36,9 @@ namespace oneDalTest
                 //Save current MLNEM_BACKEND env var value
                 mlnetBackend = Environment.GetEnvironmentVariable(Constants.MLNET_BACKEND);
 
+                //Set backend to default
+                Environment.SetEnvironmentVariable(Constants.MLNET_BACKEND, "");
+
                 //If onedal enabled is passed as argument
                 if (_args[Constants.Onedal].Equals(Constants.OnedalEnabled))
                 {

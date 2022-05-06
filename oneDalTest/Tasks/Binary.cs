@@ -58,7 +58,7 @@ namespace oneDalTest.Tasks
                     HistorySize = 1,
                     OptimizationTolerance = 1e-12f,
                     MaximumNumberOfIterations = 100,
-                    NumberOfThreads = Environment.ProcessorCount,
+                    NumberOfThreads = Environment.ProcessorCount                  
                 };
 
                 var trainer = mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression(options);
