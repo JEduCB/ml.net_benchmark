@@ -27,7 +27,8 @@ namespace oneDalTest.Helpers
             {
                 foreach(var arg in args)
                 {
-                    var keyValuePairArg = arg.ToLower().Split('=');
+                    var keyValuePairArg = arg.Split('=');
+                    keyValuePairArg[0] = keyValuePairArg[0].ToLower();
 
                     if (_argumentList.Contains(keyValuePairArg[0]) && IsValidPairValue(keyValuePairArg))
                     {

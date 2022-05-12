@@ -19,7 +19,6 @@ namespace oneDalTest.Tasks
 
             Console.WriteLine();
             Console.WriteLine("Running Multi-Class Classification Test");
-            Console.WriteLine("Logical CPUs Count = " + Environment.ProcessorCount);
             Console.WriteLine("Using oneDAL = " + onedalEnabled.ToString());
             Console.WriteLine($"Arranging data for task: {task} (configuring preprocessing)");
 

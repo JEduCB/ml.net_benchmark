@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <PlatformTarget>x64</PlatformTarget>
     <StartupObject>oneDalTest.Program</StartupObject>
     <Platforms>AnyCPU;x64</Platforms>
@@ -19,12 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Data\msrank_test.csv" />
-    <None Remove="Data\msrank_train.csv" />
-    <None Remove="Data\onedal_hour_test.csv" />
-    <None Remove="Data\onedal_hour_train.csv" />
-    <None Remove="Data\year_prediction_msd_test.csv" />
-    <None Remove="Data\year_prediction_msd_train.csv" />
+    <None Remove="Data\airline_test.csv" />
+    <None Remove="Data\airline_train.csv" />
+    <None Remove="Data\baseball_test.csv" />
+    <None Remove="Data\baseball_train.csv" />
+    <None Remove="Data\higgs_test.csv" />
+    <None Remove="Data\higgs_train.csv" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +32,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\a9a_train.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\airline_test.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\airline_train.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\baseball_test.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\baseball_train.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\higgs_test.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\higgs_train.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\mnist_test.csv">
@@ -44,12 +62,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\msrank_train.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\onedal_hour_test.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\onedal_hour_train.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\year_prediction_msd_test.csv">
@@ -67,8 +79,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.ML.Mkl.Components" Version="2.0.0-dev.22121.1" />
-    <PackageReference Include="Microsoft.ML.OneDal" Version="0.20.0-dev.22121.1" />
+    <PackageReference Include="Microsoft.ML.Mkl.Components" Version="2.0.0-dev.22256.1" />
+    <PackageReference Include="Microsoft.ML.OneDal" Version="0.20.0-dev.22256.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">

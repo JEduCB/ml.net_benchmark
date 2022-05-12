@@ -19,7 +19,6 @@ namespace oneDalTest.Tasks
 
             Console.WriteLine();
             Console.WriteLine("Running Binary Classification Test");
-            Console.WriteLine("Logical CPUs Count = " + Environment.ProcessorCount);
             Console.WriteLine("Using oneDAL = " + onedalEnabled.ToString());
             Console.WriteLine($"Arranging data for task: {task} (configuring preprocessing)");
 
@@ -58,7 +57,7 @@ namespace oneDalTest.Tasks
                     HistorySize = 1,
                     OptimizationTolerance = 1e-12f,
                     MaximumNumberOfIterations = 100,
-                    NumberOfThreads = Environment.ProcessorCount                  
+                    NumberOfThreads = Environment.ProcessorCount
                 };
 
                 var trainer = mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression(options);
