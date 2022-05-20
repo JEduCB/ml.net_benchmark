@@ -39,7 +39,7 @@ namespace oneDalTest.Tasks
                 var mlContext = new MLContext(seed: 0);
 
                 var data = DataLoader.LoadData(mlContext, dataset, task, targetColumn);
-                var featuresArray = DataLoader.GetFeaturesArray(data[0]);
+                var featuresArray = DataLoader.GetFeaturesArray(data[0], targetColumn);
 
                 IDataView trainingData, testingData;
 

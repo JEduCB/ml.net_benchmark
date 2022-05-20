@@ -40,7 +40,7 @@ namespace oneDalTest.Tasks
                 var mlContext = new MLContext(seed: 0);
 
                 var data = DataLoader.LoadData(mlContext, dataset, task, targetColumn);
-                var featuresArray = DataLoader.GetFeaturesArray(data[0]);
+                var featuresArray = DataLoader.GetFeaturesArray(data[0], targetColumn);
 
                 IDataView trainingData, testingData;
 
@@ -73,7 +73,7 @@ namespace oneDalTest.Tasks
                 t2.Stop();
 
                 var t3 = System.Diagnostics.Stopwatch.StartNew();
-                var metrics = mlContext.MulticlassClassification.Evaluate(predictions, labelColumnName: "target");
+                var metrics = mlContext.MulticlassClassification.Evaluate(predictions, labelColumnName: $"{targetColumn}");
                 t3.Stop();
                 tg.Stop();
 

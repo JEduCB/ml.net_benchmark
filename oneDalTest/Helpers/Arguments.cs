@@ -13,6 +13,10 @@ namespace oneDalTest.Helpers
 
             //If an optional argumen is not explicitely set, set it to its default value
             var argsList = args.ToList();
+            if (argsList.Count(arg => arg.Contains(Constants.Target)) == 0)
+            {
+                argsList.Add(Constants.Target + "=target");
+            }
             if (argsList.Count(arg => arg.Contains(Constants.Onedal)) == 0)
             {
                 argsList.Add(Constants.Onedal + "=2");

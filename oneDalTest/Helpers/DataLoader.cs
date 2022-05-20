@@ -8,7 +8,7 @@ namespace oneDalTest.Helpers
 {
     internal static class DataLoader
     {
-        public static IDataView[] LoadData(MLContext mlContext, string dataset, string task, string label = "target", char separator = ',')
+        public static IDataView[] LoadData(MLContext mlContext, string dataset, string task, string label, char separator = ',')
         {
             var trainDataset = $"Data/{dataset}_train.csv";
             var testDataset = $"Data/{dataset}_test.csv";
@@ -54,7 +54,7 @@ namespace oneDalTest.Helpers
             return dataList.ToArray();
         }
 
-        public static string[] GetFeaturesArray(IDataView data, string labelName = "target")
+        public static string[] GetFeaturesArray(IDataView data, string labelName)
         {
             List<string> featuresList = new List<string>();
 
