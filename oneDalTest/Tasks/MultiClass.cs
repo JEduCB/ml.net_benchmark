@@ -2,25 +2,27 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace oneDalTest.Tasks
 {
     using Helpers;
     using Microsoft.ML.Trainers;
+    using System.IO;
 
     internal class MultiClass
     {
-        static internal void RunTask(string dataset, string task, string targetColumn, bool onedalEnabled, int iterations)
+        static internal void RunTask(string dataset, string task, string targetColumn, bool onedalEnabled, int iterations,
+            StreamWriter csvWriter, ExcelDocument excelDoc, bool calculateSpeedUp)
         {
-            string header = "Run,Dataset,Task,All time[ms],Reading time[ms],Fitting time[ms],Prediction time[ms],Evaluation time[ms]," +
-                        "LogLoss,MicroAccuracy,MacroAccuracy";
+            List<string> rows = null;
 
-            Console.WriteLine();
-            Console.WriteLine("Running Multi-Class Classification Test");
-            Console.WriteLine("Using oneDAL = " + onedalEnabled.ToString());
-            Console.WriteLine($"Arranging data for task: {task} (configuring preprocessing)");
+            if (excelDoc != null)
+            {
+                rows = new List<string>();
+            }
+
+            string header = "Run,OneDAL,Features,Dataset,Task,All time[ms],Reading time[ms],Fitting time[ms]," +
+                "Prediction time[ms],Evaluation time[ms],LogLoss,MicroAccuracy,MacroAccuracy";
 
             Console.WriteLine();
             Console.WriteLine("Warming up... Please wait!");
@@ -77,29 +79,46 @@ namespace oneDalTest.Tasks
 
                 if (i == 0)
                 {
-                    Console.WriteLine($"Found [{featuresArray.Length}] features.");
+                    ResultConsole.WriteLine($"Run {i} - Warm-up result.", csvWriter, rows);
+                    ResultConsole.WriteLine(string.Empty, csvWriter, rows);
+                    ResultConsole.WriteLine(header, csvWriter, rows);
+
+                    var result = $"{i},{onedalEnabled},{featuresArray.Length},{dataset},{task}," +
+                        $"{tg.Elapsed.TotalMilliseconds},{t0.Elapsed.TotalMilliseconds}," +
+                        $"{t1.Elapsed.TotalMilliseconds},{t2.Elapsed.TotalMilliseconds}," +
+                        $"{t3.Elapsed.TotalMilliseconds},{metrics.LogLoss},{metrics.MicroAccuracy}," +
+                        $"{metrics.MacroAccuracy}";
+
+                    ResultConsole.WriteLine(result, csvWriter, rows);
 
                     Console.WriteLine();
-                    Console.WriteLine($"First run result - Run {i} (warming up).");
+                    Console.WriteLine("Running...");
 
-                    Console.WriteLine();
-                    Console.WriteLine(header);
-                    Console.WriteLine($"{i},{dataset},{task},{tg.Elapsed.TotalMilliseconds},{t0.Elapsed.TotalMilliseconds}," +
-                        $"{t1.Elapsed.TotalMilliseconds},{t2.Elapsed.TotalMilliseconds},{t3.Elapsed.TotalMilliseconds}," +
-                        $"{metrics.LogLoss},{metrics.MicroAccuracy},{metrics.MacroAccuracy}");
+                    ResultConsole.WriteLine(string.Empty, csvWriter, rows);
+                    ResultConsole.WriteLine($"{iterations} test iterations.", csvWriter, rows);
 
-                    Console.WriteLine();
-                    Console.WriteLine($"{iterations} iterations will be now executed.");
-
-                    Console.WriteLine();
-                    Console.WriteLine(header);
+                    ResultConsole.WriteLine(string.Empty, csvWriter, rows);
+                    ResultConsole.WriteLine(header, csvWriter, rows);
                 }
                 else
                 {
-                    Console.Write($"{i},{dataset},{task},{tg.Elapsed.TotalMilliseconds},{t0.Elapsed.TotalMilliseconds}," +
-                        $"{t1.Elapsed.TotalMilliseconds},{t2.Elapsed.TotalMilliseconds},{t3.Elapsed.TotalMilliseconds}," +
-                        $"{metrics.LogLoss},{metrics.MicroAccuracy},{metrics.MacroAccuracy}\n");
+                    var result = $"{i},{onedalEnabled},{featuresArray.Length},{dataset},{task}," +
+                        $"{tg.Elapsed.TotalMilliseconds},{t0.Elapsed.TotalMilliseconds}," +
+                        $"{t1.Elapsed.TotalMilliseconds},{t2.Elapsed.TotalMilliseconds}," +
+                        $"{t3.Elapsed.TotalMilliseconds},{metrics.LogLoss},{metrics.MicroAccuracy}," +
+                        $"{metrics.MacroAccuracy}";
+
+                    ResultConsole.WriteLine(result, csvWriter, rows);
                 }
+            }
+
+            ResultConsole.WriteLine(string.Empty, csvWriter);
+
+            csvWriter?.Flush();
+
+            if (rows != null)
+            {
+                ExcelExporter.Export(excelDoc, rows, calculateSpeedUp);
             }
         }
     }

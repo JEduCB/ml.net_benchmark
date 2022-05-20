@@ -23,6 +23,8 @@
     <None Remove="Data\airline_train.csv" />
     <None Remove="Data\baseball_test.csv" />
     <None Remove="Data\baseball_train.csv" />
+    <None Remove="Data\higgs_sample_test.csv" />
+    <None Remove="Data\higgs_sample_train.csv" />
     <None Remove="Data\higgs_test.csv" />
     <None Remove="Data\higgs_train.csv" />
   </ItemGroup>
@@ -79,6 +81,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.16.0" />
     <PackageReference Include="Microsoft.ML.Mkl.Components" Version="2.0.0-dev.22256.1" />
     <PackageReference Include="Microsoft.ML.OneDal" Version="0.20.0-dev.22256.1" />
   </ItemGroup>

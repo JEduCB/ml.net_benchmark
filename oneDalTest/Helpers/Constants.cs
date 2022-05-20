@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace oneDalTest.Helpers
+﻿namespace oneDalTest.Helpers
 {
     internal class Constants
     {
@@ -13,8 +7,10 @@ namespace oneDalTest.Helpers
         internal const string Target = "target";
         internal const string Onedal = "onedal";
         internal const string Iterations = "iterations";
+        internal const string CsvFile = "csv";
+        internal const string ExcelFile = "xlsx";
 
-        internal const int NumArguments = 5; //The count for the above list
+        internal const int NumArguments = 7; //The count for the above list
 
         internal const string MultiClass = "mcl";
         internal const string Regression = "reg";
@@ -22,8 +18,11 @@ namespace oneDalTest.Helpers
 
         internal const string OnedalDisabled = "0";
         internal const string OnedalEnabled = "1";
+        internal const string OnedalBoth = "2";
 
         internal const string MLNET_BACKEND = "MLNET_BACKEND";
         internal const string ONEDAL = "ONEDAL";
+
+        internal const string NO_FILE = "*none*";
     }
 }

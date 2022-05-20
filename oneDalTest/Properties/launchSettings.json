@@ -2,7 +2,7 @@
   "profiles": {
     "oneDalTest": {
       "commandName": "Project",
-      "commandLineArgs": "task=bin dataset=a9a target=target1 onedal=0 iterations=3",
+      "commandLineArgs": "task=bin dataset=a9a target=target xlsx=t.xlsx iterations=5",
       "nativeDebugging": true
     }
   }
